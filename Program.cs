@@ -406,7 +406,7 @@ namespace Tauzhanov_Evdokimova
                             if (vibo == 1)
                             {
 
-                                string Books = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt";
+                                string Books = @"C:..\файлики (1)\books.txt";
 
                                 try
                                 {
@@ -417,6 +417,7 @@ namespace Tauzhanov_Evdokimova
                                         {
 
                                             string[] parts = line.Split('#');
+                                            string result = string.Join(" ", parts);
                                             foreach (var part in parts)
                                             {
                                                 Console.WriteLine(part.Trim()); // Используем Trim() для удаления пробелов
@@ -432,7 +433,7 @@ namespace Tauzhanov_Evdokimova
                             if (vibo == 2)
                             {
 
-                                string AuthorId = @"C:\Users\Dream PC\Desktop\файлики (1)\authors.txt";
+                                string AuthorId = @"C:..\файлики (1)\authors.txt";
 
                                 try
                                 {
@@ -443,6 +444,7 @@ namespace Tauzhanov_Evdokimova
                                         {
 
                                             string[] parts = line.Split('#');
+                                            string result = string.Join(" ", parts);
                                             foreach (var part in parts)
                                             {
                                                 Console.WriteLine(part.Trim()); // Используем Trim() для удаления пробелов
@@ -459,7 +461,7 @@ namespace Tauzhanov_Evdokimova
                             {
 
 
-                                string GenreId = @"C:\Users\Dream PC\Desktop\файлики (1)\genres.txt";
+                                string GenreId = @"C:..\файлики (1)\genres.txt";
 
                                 try
                                 {
@@ -470,6 +472,7 @@ namespace Tauzhanov_Evdokimova
                                         {
 
                                             string[] parts = line.Split('#');
+                                            string result = string.Join(" ", parts);
                                             foreach (var part in parts)
                                             {
                                                 Console.WriteLine(part.Trim()); // Используем Trim() для удаления пробелов
@@ -534,7 +537,7 @@ namespace Tauzhanov_Evdokimova
                                             Console.WriteLine("Произошла ошибка при записи в файл: " + ex.Message);
                                         }
                                     }*/
-                                    string books = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt";
+                                    string books = @"C:..\файлики (1)\books.txt";
                                     bool isRunning = true;
 
                                     Console.WriteLine("Введите 'exit' для выхода из программы.");
@@ -563,7 +566,7 @@ namespace Tauzhanov_Evdokimova
 
                                 case "2":
 
-                                    string filetxtbook = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt";
+                                    string filetxtbook = @"C:..\файлики (1)\books.txt";
 
                                     try
                                     {
@@ -582,7 +585,7 @@ namespace Tauzhanov_Evdokimova
                                     }
 
 
-                                    string booksUpdate = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt";
+                                    string booksUpdate = @"C:..\файлики (1)\books.txt";
                                     Console.Write("Введите что вы хотите изменить: ");
                                     string oldtext = Console.ReadLine();
                                     string textToReplace = oldtext; // Текст, который нужно заменить
@@ -609,7 +612,7 @@ namespace Tauzhanov_Evdokimova
                                     }
                                     break;
                                 case "3":
-                                string filetxtBook = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt";
+                                string filetxtBook = @"C:..\файлики (1)\books.txt";
 
                                 try
                                 {
@@ -627,7 +630,7 @@ namespace Tauzhanov_Evdokimova
                                     Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
                                 }
                                 // код delete book
-                                string filePath = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt";
+                                string filePath = @"C:..\файлики (1)\books.txt";
                                 var lines = File.ReadAllLines(filePath).ToList();
                                 Console.Write("Введите что вы хотите удалить: ");
                                 string DeleteText = Console.ReadLine();
