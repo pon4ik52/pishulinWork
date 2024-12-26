@@ -1,4 +1,6 @@
-﻿
+
+using static System.Reflection.Metadata.BlobBuilder;
+
 namespace Tauzhanov_Evdokimova
 {
     internal class Program
@@ -386,233 +388,205 @@ namespace Tauzhanov_Evdokimova
 
 */
 
-                int vibor, vibo;
-                Console.WriteLine("Выберите что хотите сделать");
-                Console.WriteLine("1. Открыть справочник");
-                Console.WriteLine("2. Меню действий");
-                Console.WriteLine("3. Выйти из системы");
-                vibor = Convert.ToInt32(Console.ReadLine());
-                switch (vibor)
-                {
-                    case 1:
-                        bool run = true;
+            int vibor, vibo;
+            Console.WriteLine("Выберите что хотите сделать");
+            Console.WriteLine("1. Открыть справочник");
+            Console.WriteLine("2. Меню действий");
+            Console.WriteLine("3. Открыть рейтинги");
+            Console.WriteLine("4. Выйти из системы");
+            vibor = Convert.ToInt32(Console.ReadLine());
+            switch (vibor)
+            {
+                case 1:
+                    bool run = true;
 
-                        while (run)
+                    while (run)
+                    {
+
+                        Console.WriteLine("Какой справочник вы хотите открыть?\n1. Тайтлы\n2. Авторы\n3. Жанры");
+                        Console.WriteLine("Введите '0' для выхода из программы.");
+                        vibo = Convert.ToInt32(Console.ReadLine());
+                        if (vibo == 1)
                         {
 
-                            Console.WriteLine("Какой справочник вы хотите открыть?\n1. Тайтлы\n2. Авторы\n3. Жанры");
-                            Console.WriteLine("Введите '0' для выхода из программы.");
-                            vibo = Convert.ToInt32(Console.ReadLine());
-                            if (vibo == 1)
+                            string Books = @"D:..\файлики (1)\books.txt";
+
+                            try
                             {
-
-                                string Books = @"C:..\файлики (1)\books.txt";
-
-                                try
+                                using (StreamReader reader = new StreamReader(Books))
+                                
                                 {
-                                    using (StreamReader reader = new StreamReader(Books))
-                                    {
-                                        string line;
-                                        while ((line = reader.ReadLine()) != null)
-                                        {
+                                    string line = reader.ReadToEnd();
+                                    string[] data = line.Split('#'); 
 
-                                            string[] parts = line.Split('#');
-                                            string result = string.Join(" ", parts);
-                                            foreach (var part in parts)
-                                            {
-                                                Console.WriteLine(part.Trim()); // Используем Trim() для удаления пробелов
-                                            }
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
+                                    string result = string.Join(" ", data);
+
+                                    Console.WriteLine(result);
                                 }
                             }
-                            if (vibo == 2)
+                            
+                            catch (Exception ex)
                             {
-
-                                string AuthorId = @"C:..\файлики (1)\authors.txt";
-
-                                try
-                                {
-                                    using (StreamReader reader = new StreamReader(AuthorId))
-                                    {
-                                        string line;
-                                        while ((line = reader.ReadLine()) != null)
-                                        {
-
-                                            string[] parts = line.Split('#');
-                                            string result = string.Join(" ", parts);
-                                            foreach (var part in parts)
-                                            {
-                                                Console.WriteLine(part.Trim()); // Используем Trim() для удаления пробелов
-                                            }
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
-                                }
-                            }
-                            if (vibo == 3)
-                            {
-
-
-                                string GenreId = @"C:..\файлики (1)\genres.txt";
-
-                                try
-                                {
-                                    using (StreamReader reader = new StreamReader(GenreId))
-                                    {
-                                        string line;
-                                        while ((line = reader.ReadLine()) != null)
-                                        {
-
-                                            string[] parts = line.Split('#');
-                                            string result = string.Join(" ", parts);
-                                            foreach (var part in parts)
-                                            {
-                                                Console.WriteLine(part.Trim()); // Используем Trim() для удаления пробелов
-                                            }
-                                        }
-                                    }
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
-                                }
-
-
-                            }
-
-
-                            if (vibo == 0)
-                            {
-                            Main(args); /*ВОЗВРАЩАЕТ К ПЕРВОЙ СТРОКЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+                                Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
                             }
                         }
-                        break;
-
-                    case 2:
-
-                        /*Library library = new Library();
-                        library.LoadData();*/
-
-                        bool running = true;
-
-                        while (running)
+                        if (vibo == 2)
                         {
-                            Console.WriteLine("Система управления библиотеки");
-                            Console.WriteLine("1. Добавить книгу");
-                            Console.WriteLine("2. Изменить книгу");
-                            Console.WriteLine("3. Удалить книгу");
-                            Console.WriteLine("0. Выход");
 
-                            switch (Console.ReadLine())
+                            string AuthorId = @"D:..\файлики (1)\authors.txt";
+
+                            try
                             {
-                                case "1":
-                                    // код add book
-                                    /*{
-                                        Console.WriteLine("Напишите что вы хотите добавить по этому примеру (1#Война и мир#978-3-16-148410-0)");
+                                using (StreamReader reader = new StreamReader(AuthorId))
+                                {
+                                    {
+                                        string line = reader.ReadToEnd();
+                                        string[] data = line.Split('#');
 
-                                        string books = @"C:\Users\Dream PC\Desktop\файлики (1)\books.txt"; 
+                                        string result = string.Join(" ", data);
 
-                                        try
+                                        Console.WriteLine(result);
+                                    }
+                                }
+                            }
+                            
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
+                            }
+                        }
+                        if (vibo == 3)
+                        {
+
+
+                            string GenreId = @"D:..\файлики (1)\genres.txt";
+
+                            try
+                            {
+                                using (StreamReader reader = new StreamReader(GenreId))
+                                {
+                                    {
+                                        string line = reader.ReadToEnd();
+                                        string[] data = line.Split('#');
+
+                                        string result = string.Join(" ", data);
+
+                                        Console.WriteLine(result);
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
+                            }
+
+
+                        }
+
+
+                        if (vibo == 0)
+                        {
+                            Main(args); /*ВОЗВРАЩАЕТ К ПЕРВОЙ СТРОКЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+                        }
+                    }
+                    break;
+
+                case 2:
+
+                    
+
+                    bool running = true;
+
+                    while (running)
+                    {
+                        Console.WriteLine("Система управления библиотеки");
+                        Console.WriteLine("1. Добавить книгу");
+                        Console.WriteLine("2. Изменить книгу");
+                        Console.WriteLine("3. Удалить книгу");
+                        Console.WriteLine("4. Выдача книги");
+                        Console.WriteLine("5. Возврат книги");
+                        Console.WriteLine("0. Выход");
+
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+                                
+                                string books = @"D:..\файлики (1)\books.txt";
+                                bool isRunning = true;
+
+                                Console.WriteLine("Введите 'exit' для выхода из программы.");
+                                Console.WriteLine("Напишите что вы хотите добавить по этому примеру (1#Война и мир#978-3-16-148410-0)");
+
+                                using (StreamWriter writer = new StreamWriter(books, true)) // true для добавления данных к существующему файлу
+                                {
+                                    while (isRunning)
+                                    {
+                                        Console.Write("Введите данные: ");
+                                        string input = Console.ReadLine();
+
+                                        if (input.ToLower() == "exit")
                                         {
-                                            using (StreamWriter writer = new StreamWriter(books, true)) 
-                                            {
-                                                string[] dataToWrite = { "id1#name#Данные3", "Пример1#Пример2#Пример3" };
-
-                                                foreach (var data in dataToWrite)
-                                                {
-                                                    writer.WriteLine(data);
-                                                }
-                                            }
+                                            isRunning = false;
                                         }
-                                        catch (Exception ex)
+                                        else
                                         {
-                                            Console.WriteLine("Произошла ошибка при записи в файл: " + ex.Message);
+                                            writer.WriteLine(input); // Записываем введенные данные в файл
                                         }
-                                    }*/
-                                    string books = @"C:..\файлики (1)\books.txt";
-                                    bool isRunning = true;
+                                    }
+                                }
 
-                                    Console.WriteLine("Введите 'exit' для выхода из программы.");
-                                    Console.WriteLine("Напишите что вы хотите добавить по этому примеру (1#Война и мир#978-3-16-148410-0)");
+                                Console.WriteLine("Данные успешно сохранены в " + books);
+                                break;
 
-                                    using (StreamWriter writer = new StreamWriter(books, true)) // true для добавления данных к существующему файлу
+                            case "2":
+
+                                string filetxtbook = @"D:..\файлики (1)\books.txt";
+
+                                try
+                                {
+                                    using (StreamReader reader = new StreamReader(filetxtbook))
                                     {
-                                        while (isRunning)
+                                        string line;
+                                        while ((line = reader.ReadLine()) != null)
                                         {
-                                            Console.Write("Введите данные: ");
-                                            string input = Console.ReadLine();
-
-                                            if (input.ToLower() == "exit")
-                                            {
-                                                isRunning = false;
-                                            }
-                                            else
-                                            {
-                                                writer.WriteLine(input); // Записываем введенные данные в файл
-                                            }
+                                            Console.WriteLine(line);
                                         }
                                     }
-
-                                    Console.WriteLine("Данные успешно сохранены в " + books);
-                                    break;
-
-                                case "2":
-
-                                    string filetxtbook = @"C:..\файлики (1)\books.txt";
-
-                                    try
-                                    {
-                                        using (StreamReader reader = new StreamReader(filetxtbook))
-                                        {
-                                            string line;
-                                            while ((line = reader.ReadLine()) != null)
-                                            {
-                                                Console.WriteLine(line);
-                                            }
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
-                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
+                                }
 
 
-                                    string booksUpdate = @"C:..\файлики (1)\books.txt";
-                                    Console.Write("Введите что вы хотите изменить: ");
-                                    string oldtext = Console.ReadLine();
-                                    string textToReplace = oldtext; // Текст, который нужно заменить
-                                    Console.Write("Введите новое содержимое: ");
-                                    string newtext = Console.ReadLine();
-                                    string newText = newtext; // Текст, на который заменяем
+                                string booksUpdate = @"D:..\файлики (1)\books.txt";
+                                Console.Write("Введите что вы хотите изменить: ");
+                                string oldtext = Console.ReadLine();
+                                string textToReplace = oldtext; // Текст, который нужно заменить
+                                Console.Write("Введите новое содержимое: ");
+                                string newtext = Console.ReadLine();
+                                string newText = newtext; // Текст, на который заменяем
 
-                                    try
-                                    {
+                                try
+                                {
 
-                                        string fileContent = File.ReadAllText(booksUpdate);
+                                    string fileContent = File.ReadAllText(booksUpdate);
 
-                                        // Замена старого текста на новый
-                                        fileContent = fileContent.Replace(textToReplace, newText);
+                                    // Замена старого текста на новый
+                                    fileContent = fileContent.Replace(textToReplace, newText);
 
-                                        // Запись измененного содержимого обратно в файл
-                                        File.WriteAllText(booksUpdate, fileContent);
+                                    // Запись измененного содержимого обратно в файл
+                                    File.WriteAllText(booksUpdate, fileContent);
 
-                                        Console.WriteLine("Текст успешно изменен!");
-                                    }
-                                    catch (IOException ex)
-                                    {
-                                        Console.WriteLine($"Ошибка при работе с файлом: {ex.Message}");
-                                    }
-                                    break;
-                                case "3":
-                                string filetxtBook = @"C:..\файлики (1)\books.txt";
+                                    Console.WriteLine("Текст успешно изменен!");
+                                }
+                                catch (IOException ex)
+                                {
+                                    Console.WriteLine($"Ошибка при работе с файлом: {ex.Message}");
+                                }
+                                break;
+                            case "3":
+                                string filetxtBook = @"D:..\файлики (1)\books.txt";
 
                                 try
                                 {
@@ -630,45 +604,249 @@ namespace Tauzhanov_Evdokimova
                                     Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
                                 }
                                 // код delete book
-                                string filePath = @"C:..\файлики (1)\books.txt";
-                                var lines = File.ReadAllLines(filePath).ToList();
+                                string DeleteBook = @"D:..\файлики (1)\books.txt";
+                                var lines = File.ReadAllLines(DeleteBook).ToList();
                                 Console.Write("Введите что вы хотите удалить: ");
                                 string DeleteText = Console.ReadLine();
-                                lines.RemoveAll(line => line.Contains(DeleteText)); 
-                                File.WriteAllLines(filePath, lines); // Записываем оставшиеся строки обратно в файл
+                                lines.RemoveAll(line => line.Contains(DeleteText));
+                                File.WriteAllLines(DeleteBook, lines); // Записываем оставшиеся строки обратно в файл
                                 Console.WriteLine("Строки успешно удалены.");
                                 break;
-                                
-                                case "0":
+
+                            case "4":
+
+                                string Vida4aBooks = @"D:..\файлики (1)\vida4a.txt";
+                                bool isRun = true;
+                                Console.WriteLine("Вот представлен список книг:");
+                                Console.WriteLine();
+                                string filebook = @"D:..\файлики (1)\books.txt";
+
+                                try
                                 {
-                                    Main(args); /*ВОЗВРАЩАЕТ К ПЕРВОЙ СТРОКЕ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+                                    using (StreamReader reader = new StreamReader(filebook))
+                                    {
+                                        string line;
+                                        while ((line = reader.ReadLine()) != null)
+                                        {
+                                            Console.WriteLine(line);
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
+                                }
+                                Console.WriteLine();
+                                Console.WriteLine("Введите 'exit' для выхода из программы.");
+                                Console.WriteLine("Напишите какую книгу вы хотите забрать: ");
+
+
+
+                                using (StreamWriter writer = new StreamWriter(Vida4aBooks, true)) // true для добавления данных к существующему файлу
+                                {
+                                    while (isRun)
+                                    {
+                                        Console.Write("Введите данные: ");
+                                        string input = Console.ReadLine();
+
+                                        if (input.ToLower() == "exit")
+                                        {
+                                            isRun = false;
+                                        }
+                                        else
+                                        {
+                                            writer.WriteLine(input); // Записываем введенные данные в файл
+                                        }
+                                    }
+                                }
+
+                                Console.WriteLine("Книга успешна выдана " + Vida4aBooks);
+                                Console.WriteLine( );
+                                break;
+
+                            case "5":
+
+                                string VozvratBooks = @"D:..\файлики (1)\vozvrat.txt";
+                                bool isRunn = true;
+                                Console.WriteLine("Вот представлен список книг:");
+                                Console.WriteLine();
+                                string Filebook = @"D:..\файлики (1)\books.txt";
+
+                                try
+                                {
+                                    using (StreamReader reader = new StreamReader(Filebook))
+                                    {
+                                        string line;
+                                        while ((line = reader.ReadLine()) != null)
+                                        {
+                                            Console.WriteLine(line);
+                                        }
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine("Произошла ошибка при чтении файла: " + ex.Message);
+                                }
+                                Console.WriteLine();
+                                Console.WriteLine("Введите 'exit' для выхода из программы.");
+                                Console.WriteLine("Напишите какую книгу вы хотите забрать: ");
+
+
+
+                                using (StreamWriter writer = new StreamWriter(VozvratBooks, true)) // true для добавления данных к существующему файлу
+                                {
+                                    while (isRunn)
+                                    {
+                                        Console.Write("Введите данные: ");
+                                        string input = Console.ReadLine();
+
+                                        if (input.ToLower() == "exit")
+                                        {
+                                            isRunn = false;
+                                        }
+                                        else
+                                        {
+                                            writer.WriteLine(input); // Записываем введенные данные в файл
+                                        }
+                                    }
+                                }
+
+                                Console.WriteLine("Книгу успешно возвратили " + VozvratBooks);
+                                Console.WriteLine();
+                                break;
+
+                            case "0":
+                                {
+                                    Main(args);
                                 }
                                 break;
 
-                                default:
-                                    Console.WriteLine("Звуки обезьяны...");
-                                    break;
-                            }
+                            default:
+                                Console.WriteLine("Звуки обезьяны...");
+                                break;
                         }
-                        
+                    }
+                    break;
 
-                        break;
-                    case 3:
-                        Console.WriteLine("ДОМООООООООООООООООЙ");
-                        break;
-                    default:
-                        Console.WriteLine("Звуки обезьяны...");
-                        break;
-                }
+                case 3:
+                    bool runni = true;
+
+                    while (runni)
+                    {
+                        Console.WriteLine("Рейтинги");
+                        Console.WriteLine("1. Рейтинг выдач книг");
+                        Console.WriteLine("2. Рейтинг возврат книг");
+                        Console.WriteLine("0. Выход");
+                        switch (Console.ReadLine())
+                        {
+                            case "1":
+                                string Vida4aReiting = @"D:..\файлики (1)\vida4a.txt"; 
+                                Dictionary<string, int> lineCount = new Dictionary<string, int>();
+
+                                try
+                                {
+                                    
+                                    var lines = File.ReadAllLines(Vida4aReiting);
+
+                                    
+                                    foreach (var line in lines)
+                                    {
+                                        if (lineCount.ContainsKey(line))
+                                        {
+                                            lineCount[line]++;
+                                        }
+                                        else
+                                        {
+                                            lineCount[line] = 1;
+                                        }
+                                    }
+
+                                    
+                                    var sortedLineCounts = lineCount.OrderByDescending(pair => pair.Value);
+
+                                    
+                                    Console.WriteLine("Рейтинг строк по количеству:");
+                                    foreach (var pair in sortedLineCounts)
+                                    {
+                                        Console.WriteLine($"Строка: \"{pair.Key}\" - Количество: {pair.Value}");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Ошибка при обработке файла: {ex.Message}");
+                                }
+                                break;
+                                
+                            case "2":
+                                string VozvratReiting = @"D:..\файлики (1)\vozvrat.txt";
+                                Dictionary<string, int> lineCout = new Dictionary<string, int>();
+
+                                try
+                                {
+
+                                    var lines = File.ReadAllLines(VozvratReiting);
+
+
+                                    foreach (var line in lines)
+                                    {
+                                        if (lineCout.ContainsKey(line))
+                                        {
+                                            lineCout[line]++;
+                                        }
+                                        else
+                                        {
+                                            lineCout[line] = 1;
+                                        }
+                                    }
+
+
+                                    var sortedLineCounts = lineCout.OrderByDescending(pair => pair.Value);
+
+
+                                    Console.WriteLine("Рейтинг строк по количеству:");
+                                    foreach (var pair in sortedLineCounts)
+                                    {
+                                        Console.WriteLine($"Строка: \"{pair.Key}\" - Количество: {pair.Value}");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Console.WriteLine($"Ошибка при обработке файла: {ex.Message}");
+                                }
+                                break;
+
+                            case "0":
+                                {
+                                    Main(args);
+                                }
+                                break;
+
+                            default:
+                                Console.WriteLine("Звуки обезьяны...");
+                                break;
+                        }
+                    }
+                    break;
+
+                case 4:
+                    Console.WriteLine("ДОМООООООООООООООООЙ");
+                    Environment.Exit(0);
+                    break;
+
+                default:
+                    Console.WriteLine("Звуки обезьяны...");
+                    Main(args);
+                    break;
             }
         }
     }
+}
 
 
 
 
 
-    
+
 
 
 
